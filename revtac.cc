@@ -15,7 +15,7 @@
 std::string getContent(std::istream& stream) {
   std::string line;
   std::string content;
-  while (std::getline(stream, line)) {
+  while (std::getline(stream, line, '\n')) {
     content.append(line+"\n");
   }
     //remove last new line
@@ -28,29 +28,24 @@ std::string getContent(std::istream& stream) {
  * main
  * input: number of command line arguments and array of command line args
  */
-int main(int argc, char** argv){
-  if (argc > 1){
+int main(int argc, char** argv) {
+  if (argc > 1) {
     for (int i = argc; i > 1; i--) {
       std::ifstream file;
       if (strcmp(argv[i - 1], "-") == 0) {
-        std::cout << getContent(std::cin) << std::endl;
+        std::cout << getContent(std::cin) << "\n";
       } else {
         file.open(argv[i - 1]);
         if (file.is_open()){
-          std::cout << getContent(file) << std::endl;
+          std::cout << getContent(file) << "\n";
           file.close();
         } else {
-          std::cout << "revtac: "<< argv[i - 1] << ": No such file or directory";
+          std::cout << "revtac: "<< argv[i - 1] << ": No such file or directory\n";
         }
       }
     }
   } else {
-    std::string line;
-    while (std::getline(std::cin, line)){
-      std::reverse(line.begin(), line.end());
-      std::cout << line << std::endl;
-    }
+    std::cout << getContent(std::cin) << "\n";
   }
-
   return 0;
 }
