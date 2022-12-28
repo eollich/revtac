@@ -16,7 +16,7 @@ std::string getContent(std::istream& stream) {
   std::string line;
   std::string content;
   while (std::getline(stream, line, '\n')) {
-    content.append(line+"\n");
+    content.append(line + '\n');
   }
     //remove last new line
     content.erase(content.size() - 1);
@@ -33,11 +33,11 @@ int main(int argc, char** argv) {
     for (int i = argc; i > 1; i--) {
       std::ifstream file;
       if (strcmp(argv[i - 1], "-") == 0) {
-        std::cout << getContent(std::cin) << "\n";
+        std::cout << getContent(std::cin) << '\n';
       } else {
         file.open(argv[i - 1]);
         if (file.is_open()){
-          std::cout << getContent(file) << "\n";
+          std::cout << getContent(file) << '\n';
           file.close();
         } else {
           std::cout << "revtac: "<< argv[i - 1] << ": No such file or directory\n";
@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
       }
     }
   } else {
-    std::cout << getContent(std::cin) << "\n";
+    std::cout << getContent(std::cin) << '\n';
   }
   return 0;
 }
